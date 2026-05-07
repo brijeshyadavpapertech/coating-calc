@@ -4,7 +4,7 @@
   "description": "Coating & Color Kitchen Engineering Calculators",
   "start_url": "/coating-calc/",
   "scope": "/coating-calc/",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#f4f6f5",
   "theme_color": "#1a9e7e",
   "orientation": "portrait",
