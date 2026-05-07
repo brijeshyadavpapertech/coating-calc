@@ -1,0 +1,194 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f4f6f5;
+  color: #1a1a1a;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 70px;
+}
+
+/* Header */
+.app-header {
+  background: linear-gradient(135deg, #1a9e7e, #0d7a60);
+  color: white;
+  padding: 48px 20px 24px;
+  text-align: center;
+}
+.app-header h1 { font-size: 24px; font-weight: 700; }
+.app-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+.page-header {
+  background: linear-gradient(135deg, #1a9e7e, #0d7a60);
+  color: white;
+  padding: 48px 16px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.back-btn {
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+  line-height: 1;
+  padding: 0 4px;
+}
+.page-title { font-size: 18px; font-weight: 700; }
+.page-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+
+/* Home Cards */
+.home-content { padding: 16px; }
+
+.calc-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  border: 1px solid #efefef;
+}
+.card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: #e8f5f0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.card-info { flex: 1; }
+.card-title { font-size: 15px; font-weight: 600; color: #1a1a1a; }
+.card-subtitle { font-size: 12px; color: #888; margin-top: 3px; }
+.card-arrow { font-size: 20px; color: #bbb; }
+
+.about-box {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  border: 1px solid #efefef;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+.about-box strong { display: block; font-size: 14px; color: #1a1a1a; margin-bottom: 6px; }
+.about-box a { color: #1a9e7e; text-decoration: none; font-weight: 600; }
+
+/* Calculator Page */
+.page-content { padding: 16px; }
+
+.section-card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  border: 1px solid #efefef;
+}
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a9e7e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.input-group { margin-bottom: 12px; }
+.input-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.unit {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 400;
+  background: #f4f6f5;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #1a1a1a;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+.input-group input:focus {
+  outline: none;
+  border-color: #1a9e7e;
+  background: white;
+}
+
+.calc-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #1a9e7e, #0d7a60);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 6px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.calc-btn:active { opacity: 0.85; }
+
+/* Results */
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.result-row:last-child { border-bottom: none; }
+.result-label { font-size: 13px; color: #555; }
+.result-value { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+.result-value small { font-size: 11px; color: #aaa; font-weight: 400; margin-left: 2px; }
+.result-divider { height: 1px; background: #f0f0f0; margin: 6px 0; }
+
+.result-row.highlight .result-label { color: #1a9e7e; font-weight: 600; }
+.result-row.highlight .result-value { color: #1a9e7e; font-size: 18px; }
+
+/* Bottom Nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  background: white;
+  border-top: 1px solid #efefef;
+  display: flex;
+  height: 62px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
+}
+.nav-item {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-decoration: none;
+  color: #aaa;
+  font-size: 10px;
+  gap: 3px;
+  transition: color 0.2s;
+}
+.nav-item svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.nav-item.active { color: #1a9e7e; }
+.nav-item span { font-weight: 500; }
