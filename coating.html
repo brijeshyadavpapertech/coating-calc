@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coat Weight Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a9e7e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="page-header">
+    <a href="index.html" class="back-btn">‹</a>
+    <div>
+      <div class="page-title">Coat Weight Calculator</div>
+      <div class="page-sub">Wet/dry coating · coat weight · GSM based</div>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <!-- Inputs -->
+    <div class="section-card">
+      <div class="section-title">Input Parameters</div>
+
+      <div class="input-group">
+        <label>Machine Production <span class="unit">MT</span></label>
+        <input type="number" id="machineProd" value="250" min="0" step="1" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label>Average GSM <span class="unit">g/m²</span></label>
+        <input type="number" id="avgGSM" value="300" min="0" step="1" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label>Finishing Loss <span class="unit">%</span></label>
+        <input type="number" id="finLoss" value="7.5" min="0" max="100" step="0.1" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label>Tank Capacity (100% level) <span class="unit">m³</span></label>
+        <input type="number" id="tankCap" value="25" min="0" step="0.1" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label>Tank Level Drop <span class="unit">%</span></label>
+        <input type="number" id="levelDrop" value="45" min="0" max="100" step="0.1" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label>Coating Solution Density <span class="unit">g/cm³</span></label>
+        <input type="number" id="density" value="1.57" min="0" step="0.01" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label>Solid Content <span class="unit">%</span></label>
+        <input type="number" id="solidPct" value="65" min="0" max="100" step="0.1" inputmode="decimal">
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">Calculate</button>
+    </div>
+
+    <!-- Results -->
+    <div class="section-card" id="resultsCard" style="display:none;">
+      <div class="section-title">Results</div>
+
+      <div class="result-row">
+        <span class="result-label">Wet Coating Consumption</span>
+        <span class="result-value"><span id="r-wet">—</span> <small>MT</small></span>
+      </div>
+
+      <div class="result-row">
+        <span class="result-label">Dry Coating Consumption</span>
+        <span class="result-value"><span id="r-dry">—</span> <small>MT</small></span>
+      </div>
+
+      <div class="result-divider"></div>
+
+      <div class="result-row highlight">
+        <span class="result-label">Coat Weight (Machine)</span>
+        <span class="result-value"><span id="r-cwm">—</span> <small>g/m²</small></span>
+      </div>
+
+      <div class="result-row highlight">
+        <span class="result-label">Coat Weight (Finished)</span>
+        <span class="result-value"><span id="r-cwf">—</span> <small>g/m²</small></span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="coating.html" class="nav-item active">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="2" rx="1" opacity="0.6"/><path d="M3 17h18M3 21h18" stroke-linecap="round"/></svg>
+      <span>Coating</span>
+    </a>
+  </nav>
+
+  <script>
+    function calculate() {
+      const mp  = parseFloat(document.getElementById('machineProd').value) || 0;
+      const gsm = parseFloat(document.getElementById('avgGSM').value)      || 0;
+      const fl  = parseFloat(document.getElementById('finLoss').value)     || 0;
+      const tc  = parseFloat(document.getElementById('tankCap').value)     || 0;
+      const ld  = parseFloat(document.getElementById('levelDrop').value)   || 0;
+      const dn  = parseFloat(document.getElementById('density').value)     || 0;
+      const sp  = parseFloat(document.getElementById('solidPct').value)    || 0;
+
+      const wet = tc * dn * (ld / 100);
+      const dry = wet * (sp / 100);
+      const fin = mp * (1 - fl / 100);
+      const cwm = mp  > 0 ? (dry * gsm) / mp  : 0;
+      const cwf = fin > 0 ? (dry * gsm) / fin : 0;
+
+      document.getElementById('r-wet').textContent = wet.toFixed(4);
+      document.getElementById('r-dry').textContent = dry.toFixed(4);
+      document.getElementById('r-cwm').textContent = cwm.toFixed(2);
+      document.getElementById('r-cwf').textContent = cwf.toFixed(2);
+
+      document.getElementById('resultsCard').style.display = 'block';
+      document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
